@@ -1,0 +1,54 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "CameraArea",
+"language": "GDScript",
+"path": "res://Camera/CameraArea.gd"
+}, {
+"base": "Node2D",
+"class": "CameraHandler",
+"language": "GDScript",
+"path": "res://Camera/CameraHandler.gd"
+}, {
+"base": "Path2D",
+"class": "CameraPath",
+"language": "GDScript",
+"path": "res://Camera/CameraPath.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://StateMachine/StateMachine.gd"
+} ]
+_global_script_class_icons={
+"CameraArea": "",
+"CameraHandler": "",
+"CameraPath": "",
+"StateMachine": ""
+}
+
+[application]
+
+config/name="_GodotPlugin"
+config/icon="res://icon.png"
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
