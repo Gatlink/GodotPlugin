@@ -38,9 +38,6 @@ func _ready() -> void:
 	
 	if first_button != null:
 		link_controls(last, first_button)
-	
-	for submenu in SUB_MENUS:
-		initialize_submenu(submenu)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -65,6 +62,7 @@ func link_controls(prev : Control, next : Control) -> void:
 func initialize_submenu(submenu : String) -> void:
 	var controls := []
 	for node in get_tree().get_nodes_in_group(submenu):
+		node.visible = true
 		add_focusable_node(node, controls)
 	
 	if controls.size() == 0:
@@ -83,6 +81,8 @@ func initialize_submenu(submenu : String) -> void:
 			prev = control
 	
 	link_controls(prev, first)
+	
+	first.grab_focus()
 
 
 func add_focusable_node(node : Node, controls : Array) -> void:
@@ -95,16 +95,11 @@ func add_focusable_node(node : Node, controls : Array) -> void:
 
 
 func open_submenu(submenu : String) -> void:
-	var focused := false
 	for other_menu in SUB_MENUS:
 		for node in get_tree().get_nodes_in_group(other_menu):
-			node.visible = other_menu == submenu
-			
-			if not focused and node.visible:
-				var control := get_first_focusable_control(node)
-				if control != null:
-					focused = true
-					control.grab_focus()
+			node.visible = false
+	
+	initialize_submenu(submenu)
 	
 	animation.play("ShowSubMenu")
 	current_submenu = submenu
