@@ -1,24 +1,24 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Camera/TEST/TARGET.gd" type="Script" id=1]
-[ext_resource path="res://Camera/CameraHandler.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Camera/TEST/CameraTest.gd" type="Script" id=3]
-[ext_resource path="res://Camera/CameraPath.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Camera/CameraArea.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Camera3D/TEST/TARGET.gd" type="Script" id=1]
+[ext_resource path="res://Camera3D/CameraHandler.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Camera3D/TEST/CameraTest.gd" type="Script" id=3]
+[ext_resource path="res://Camera3D/CameraPath.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Camera3D/CameraArea.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=4]
 resource_local_to_scene = true
-extents = Vector2( 704, 448 )
+size = Vector2( 704, 448 )
 
 [sub_resource type="Curve2D" id=2]
 resource_local_to_scene = true
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -512, -296, 0, 0, 0, 0, 512, 304 )
+"points": PackedVector2Array( 0, 0, 0, 0, -512, -296, 0, 0, 0, 0, 512, 304 )
 }
 
 [sub_resource type="RectangleShape2D" id=3]
 resource_local_to_scene = true
-extents = Vector2( 512, 296 )
+size = Vector2( 512, 296 )
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.0

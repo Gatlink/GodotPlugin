@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cwvl2mwyoxrrk"]
+
+[ext_resource type="SystemFont" uid="uid://vxifw6dqivsu" path="res://Menu/MenuFont.tres" id="1_kk0ws"]
+
+[resource]
+Button/colors/font_color_focus = Color(0.678431, 0.498039, 0, 1)
+Button/colors/font_color_hover = Color(0.678431, 0.498039, 0, 1)
+Button/colors/font_color_pressed = Color(0.68, 0.498667, 0, 1)
+Button/font_sizes/font_size = 64
+Button/fonts/font = ExtResource("1_kk0ws")
+Label/colors/font_color = Color(0.231373, 0.105882, 0.247059, 1)
+Label/constants/outline_size = 30
+Label/font_sizes/font_size = 192
+Label/fonts/font = ExtResource("1_kk0ws")

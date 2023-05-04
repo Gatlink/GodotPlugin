@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7c5vpfo7my25"]
+
+[ext_resource type="Theme" uid="uid://dac2l6uvyv1my" path="res://Menu/SubMenuTheme.tres" id="2_sxuaq"]
+[ext_resource type="Script" path="res://Menu/BusSlider.gd" id="4"]
+
+[node name="BusSlider" type="HBoxContainer"]
+theme_override_constants/separation = 30
+alignment = 2
+script = ExtResource("4")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("2_sxuaq")
+text = "Volume"
+
+[node name="HSlider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_sxuaq")
+max_value = 1.0
+step = 0.01
+
+[connection signal="focus_entered" from="HSlider" to="." method="_on_HSlider_focus_entered"]
+[connection signal="focus_exited" from="HSlider" to="." method="_on_HSlider_focus_exited"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_HSlider_value_changed"]

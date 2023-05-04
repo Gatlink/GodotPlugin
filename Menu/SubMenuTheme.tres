@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dac2l6uvyv1my"]
+
+[ext_resource type="SystemFont" uid="uid://vxifw6dqivsu" path="res://Menu/MenuFont.tres" id="1_efj4v"]
+
+[resource]
+Button/colors/font_color_focus = Color(0.678431, 0.498039, 0, 1)
+Button/colors/font_color_hover = Color(0.678431, 0.498039, 0, 1)
+Button/colors/font_color_pressed = Color(0.68, 0.498667, 0, 1)
+Button/font_sizes/font_size = 64
+Button/fonts/font = ExtResource("1_efj4v")
+HBoxContainer/constants/separation = 10
+Label/font_sizes/font_size = 64
+Label/fonts/font = ExtResource("1_efj4v")

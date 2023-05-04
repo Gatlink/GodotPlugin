@@ -1,8 +1,8 @@
 extends Node2D
 
 
-onready var camera := $CameraHandler
-onready var nodes := [
+@onready var camera := $CameraHandler
+@onready var nodes := [
 	$TARGET,
 	$CameraPath,
 	$CameraArea

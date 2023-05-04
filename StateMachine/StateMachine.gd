@@ -2,41 +2,16 @@ class_name StateMachine
 extends Node
 
 
-# STATE
-class State:
-	extends Node
+@onready var state : State = get_child(0)
 
-	var state_machine : StateMachine
-
-
-	func enter(_param : Dictionary = {}) -> void:
-		pass
-
-
-	func exit() -> void:
-		pass
-
-
-	func update(_delta : float) -> void:
-		pass
-
-
-	func physics_update(_delta : float) -> void:
-		pass
-
-
-	func handle_input(_event : InputEvent) -> void:
-		pass
-
-
-# STATE MACHINE
-onready var state : State = get_child(0)
 
 func _ready() -> void:
-	yield(owner, "ready")
+	await owner.ready
 	
 	for child in get_children():
-		child.state_machine = self
+		var child_state := child as State
+		if child_state != null:
+			child_state.state_machine = self
 	
 	state.enter()
 

@@ -2,21 +2,21 @@ class_name CameraHandler
 extends Node2D
 
 
-export (NodePath) var target_path : NodePath
-export (Vector2) var offset : Vector2
-export (float) var decay := 0.8
-export (Vector2) var max_offset := Vector2(100, 75)
-export (float) var max_roll := 0.1
+@export (NodePath) var target_path : NodePath
+@export (Vector2) var offset : Vector2
+@export (float) var decay := 0.8
+@export (Vector2) var max_offset := Vector2(100, 75)
+@export (float) var max_roll := 0.1
 
 
 const TRAUMA_POWER = 2
 
 
-onready var target : Node2D = get_node(target_path)
-onready var damping_timer : Timer = $DampingTimer
-onready var damp_time : float = damping_timer.wait_time
-onready var camera : Camera2D = $Camera2D
-onready var noise : OpenSimplexNoise = OpenSimplexNoise.new()
+@onready var target : Node2D = get_node(target_path)
+@onready var damping_timer : Timer = $DampingTimer
+@onready var damp_time : float = damping_timer.wait_time
+@onready var camera : Camera2D = $Camera2D
+@onready var noise : FastNoiseLite = FastNoiseLite.new()
 
 
 var previous_node : Node2D
@@ -30,7 +30,7 @@ func _ready() -> void:
 	randomize()
 	noise.seed = randi()
 	noise.period = 4
-	noise.octaves = 2
+	noise.fractal_octaves = 2
 	camera.make_current()
 
 
@@ -68,9 +68,9 @@ func get_next_position(node : Node) -> Vector2:
 	if area != null:
 		var limits := area.limits
 		var position := target.global_position + offset
-		var extents := get_viewport_rect().size * 0.5
-		var left_top_offset := limits.position - (position - extents)
-		var right_bottom_offset := limits.end - (position + extents)
+		var size := get_viewport_rect().size * 0.5
+		var left_top_offset := limits.position - (position - size)
+		var right_bottom_offset := limits.end - (position + size)
 		
 		left_top_offset.x = max(0, left_top_offset.x)
 		left_top_offset.y = max(0, left_top_offset.y)
