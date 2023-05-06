@@ -27,7 +27,7 @@ func play_random_pitch(clip_name : String, min_pitch : float = 0.6, max_pitch : 
 		clip.play()
 
 
-func play_music(clip_name : String) -> void:
+func play_music(clip_name : String, fade_in := true) -> void:
 	var clip := get_clip(clip_name)
 	if music == clip:
 		return
@@ -41,11 +41,15 @@ func play_music(clip_name : String) -> void:
 	
 	if clip != null:
 		clip.play()
-		clip.volume_db = -80
-		tween.parallel().tween_property(clip, "volume_db", 0, 3)
+		
+		if fade_in:
+			clip.volume_db = -80
+			tween.parallel().tween_property(clip, "volume_db", 0, 3)
 
 	if music != null:
 		tween.tween_callback(music.stop)
+	elif not fade_in:
+		tween.kill()
 	
 	music = clip
 
