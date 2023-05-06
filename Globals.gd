@@ -15,7 +15,7 @@ func freeze(duration : float = 0.2) -> void:
 	Engine.time_scale = 1.0
 
 
-func screen_shake(amplitude := Vector2(16, 16), freq : float = 15.0, duration : float = 0.2, priority : int = 0) -> void:
+func shake_screen(amplitude := Vector2(16, 16), freq : float = 15.0, duration : float = 0.2, priority : int = 0) -> void:
 	if shake_tween != null and priority >= shake_priority:
 		shake_tween.kill()
 	
