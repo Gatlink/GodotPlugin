@@ -2,11 +2,11 @@ class_name CameraHandler
 extends Node2D
 
 
-@export (NodePath) var target_path : NodePath
-@export (Vector2) var offset : Vector2
-@export (float) var decay := 0.8
-@export (Vector2) var max_offset := Vector2(100, 75)
-@export (float) var max_roll := 0.1
+@export var target_path : NodePath
+@export var offset : Vector2
+@export var decay := 0.8
+@export var max_offset := Vector2(100, 75)
+@export var max_roll := 0.1
 
 
 const TRAUMA_POWER = 2
@@ -99,10 +99,8 @@ func start_following_node(node : Node2D) -> void:
 
 
 func stop_following_node(node : Node2D) -> void:
-	var index := followed_nodes.find(node)
-	followed_nodes.remove(index)
-	if index == 0:
-		start_following_node(followed_nodes[0] if followed_nodes.size() > 0 else null)
+	followed_nodes.erase(node)
+	start_following_node(followed_nodes[0] if followed_nodes.size() > 0 else null)
 
 
 func add_trauma(x : float, y : float) -> void:

@@ -1,7 +1,7 @@
 extends Area2D
 
 
-@export (float) var speed : float = 200.0
+@export var speed : float = 200.0
 
 
 @onready var camera_handler : CameraHandler = get_node("../CameraHandler")
