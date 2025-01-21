@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://0tb8eo1dqu7v"]
+[gd_scene load_steps=7 format=3 uid="uid://0tb8eo1dqu7v"]
 
 [ext_resource type="Script" path="res://Platformer2DController/player.gd" id="1_jaiqg"]
 [ext_resource type="Script" path="res://StateMachine/StateMachine.gd" id="2_7cm2g"]
 [ext_resource type="Texture2D" uid="uid://c15xc0y0jqe52" path="res://icon.png" id="2_kumej"]
 [ext_resource type="Script" path="res://Platformer2DController/States/stand.gd" id="3_o8j5j"]
+[ext_resource type="Script" path="res://Platformer2DController/States/air.gd" id="4_560se"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_htq4p"]
 size = Vector2(64, 64)
@@ -18,6 +19,10 @@ script = ExtResource("2_7cm2g")
 script = ExtResource("3_o8j5j")
 acceleration = 0.5
 deceleration = 0.2
+
+[node name="Air" type="Node" parent="StateMachine"]
+script = ExtResource("4_560se")
+gravity = 0.5
 
 [node name="Graph" type="Node2D" parent="."]
 position = Vector2(0, -32)

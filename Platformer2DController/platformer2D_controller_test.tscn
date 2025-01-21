@@ -1,8 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bepaukshh34ie"]
+[gd_scene load_steps=5 format=3 uid="uid://bepaukshh34ie"]
 
+[ext_resource type="Texture2D" uid="uid://c15xc0y0jqe52" path="res://icon.png" id="1_egq0c"]
 [ext_resource type="PackedScene" uid="uid://0tb8eo1dqu7v" path="res://Platformer2DController/player.tscn" id="1_nqqge"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_accyj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubvwr"]
+size = Vector2(320, 64)
 
 [node name="Platformer2dControllerTest" type="Node2D"]
 
@@ -12,5 +16,22 @@ position = Vector2(0, 448)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 shape = SubResource("WorldBoundaryShape2D_accyj")
 
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(576, 100)
+scale = Vector2(18, 3.125)
+texture = ExtResource("1_egq0c")
+
+[node name="Platform" type="StaticBody2D" parent="."]
+position = Vector2(224, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_ubvwr")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform"]
+position = Vector2(0, 64)
+scale = Vector2(5, 1)
+texture = ExtResource("1_egq0c")
+
 [node name="Player" parent="." instance=ExtResource("1_nqqge")]
-position = Vector2(448, 448)
+position = Vector2(264, 128)
