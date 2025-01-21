@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://0tb8eo1dqu7v"]
+
+[ext_resource type="Script" path="res://Platformer2DController/player.gd" id="1_jaiqg"]
+[ext_resource type="Script" path="res://StateMachine/StateMachine.gd" id="2_7cm2g"]
+[ext_resource type="Texture2D" uid="uid://c15xc0y0jqe52" path="res://icon.png" id="2_kumej"]
+[ext_resource type="Script" path="res://Platformer2DController/States/stand.gd" id="3_o8j5j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htq4p"]
+size = Vector2(64, 64)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_jaiqg")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_7cm2g")
+
+[node name="Stand" type="Node" parent="StateMachine"]
+script = ExtResource("3_o8j5j")
+acceleration = 0.5
+deceleration = 0.2
+
+[node name="Graph" type="Node2D" parent="."]
+position = Vector2(0, -32)
+
+[node name="Sprite" type="Sprite2D" parent="Graph"]
+texture = ExtResource("2_kumej")
+
+[node name="Head" type="Sprite2D" parent="Graph"]
+position = Vector2(32, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_kumej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_htq4p")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bepaukshh34ie"]
+
+[ext_resource type="PackedScene" uid="uid://0tb8eo1dqu7v" path="res://Platformer2DController/player.tscn" id="1_nqqge"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_accyj"]
+
+[node name="Platformer2dControllerTest" type="Node2D"]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(0, 448)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape2D_accyj")
+
+[node name="Player" parent="." instance=ExtResource("1_nqqge")]
+position = Vector2(448, 448)
