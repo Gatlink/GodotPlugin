@@ -23,6 +23,8 @@ deceleration = 0.2
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("4_560se")
 gravity = 0.5
+max_speed = 128.0
+acceleration = 0.5
 
 [node name="Graph" type="Node2D" parent="."]
 position = Vector2(0, -32)

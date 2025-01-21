@@ -1,5 +1,5 @@
 class_name PlayerAir
-extends PlayerState
+extends PlayerMove
 
 
 ## Max speed while falling, in pixel / s
@@ -10,6 +10,7 @@ extends PlayerState
 
 
 func physics_update(delta: float) -> void:
+	super(delta)
 	player.velocity.y = min(player.velocity.y + delta * terminal_speed / gravity, terminal_speed)
 	
 	if player.is_on_floor():
