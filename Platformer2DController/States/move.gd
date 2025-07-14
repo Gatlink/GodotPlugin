@@ -29,7 +29,11 @@ func physics_update(delta: float) -> void:
 			player.velocity.x *= -1
 		else:
 			player.velocity.x += h_dir * max_speed / acceleration * delta * (turn_factor if is_turning else 1.0)
-		player.velocity.x = clamp(player.velocity.x, -max_speed, max_speed)
+		
+		# player.velocity.x = clamp(player.velocity.x, -max_speed, max_speed)
+		if abs(player.velocity.x) > max_speed:
+			player.velocity.x += -sign(player.velocity.x) * max_speed / deceleration * delta
+		
 		player.dir = h_dir
 	# DECELERATION
 	elif player.velocity.x != 0:

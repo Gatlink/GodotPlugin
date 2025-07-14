@@ -2,8 +2,8 @@ class_name PlayerJump
 extends PlayerMove
 
 
-## Jumping speed, in pixel / s
-@export var jumping_speed: float = -512.0
+## Maximum height of the jump, in pixels
+@export var max_height: float = 128.0
 
 ## Minimum time spent jumping, in seconds
 @export var min_time: float = 0
@@ -25,7 +25,7 @@ func physics_update(delta: float) -> void:
 	super(delta)
 	
 	timer += delta
-	player.velocity.y = jumping_speed
+	player.velocity.y = -max_height / max_time
 	
 	if not timer < min_time and (not Input.is_action_pressed("jump") or timer >= max_time):
 		transition_to("Air")

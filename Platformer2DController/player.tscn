@@ -24,12 +24,11 @@ deceleration = 0.2
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("4_560se")
 gravity = 0.5
-max_speed = 128.0
+max_speed = 64.0
 acceleration = 0.5
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("5_078gm")
-jumping_speed = -256.0
 max_time = 0.4
 acceleration = 0.5
 metadata/_custom_type_script = "uid://clijydx75l82s"
