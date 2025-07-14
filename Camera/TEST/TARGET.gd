@@ -1,10 +1,7 @@
-extends Area2D
+extends CharacterBody2D
 
 
 @export var speed : float = 200.0
-
-
-@onready var camera_handler : CameraHandler = get_node("../CameraHandler")
 
 
 func _process(delta: float) -> void:
@@ -17,4 +14,4 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO, Vector2(50, 50)), Color.RED)
+	draw_rect(Rect2(Vector2(-32, -32), Vector2(64, 64)), Color.RED)

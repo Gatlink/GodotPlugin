@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://c11q24aox2fy0"]
+
+[ext_resource type="Script" uid="uid://dumg6ck8rnoxv" path="res://Camera/TEST/camera_test.gd" id="1_4tosv"]
+[ext_resource type="Script" uid="uid://bfy5ig8dte0wr" path="res://Camera/TEST/TARGET.gd" id="2_1xldv"]
+[ext_resource type="PackedScene" uid="uid://bdoa1s1aves38" path="res://Camera/camera_handler.tscn" id="3_1xldv"]
+[ext_resource type="PackedScene" uid="uid://dk06wmmd3pmd" path="res://Camera/camera_area.tscn" id="5_82prq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mfx4t"]
+radius = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82prq"]
+size = Vector2(2000, 1000)
+
+[node name="CameraTest" type="Node2D"]
+script = ExtResource("1_4tosv")
+
+[node name="TARGET" type="CharacterBody2D" parent="."]
+collision_mask = 0
+script = ExtResource("2_1xldv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TARGET"]
+shape = SubResource("CircleShape2D_mfx4t")
+
+[node name="CameraHandler" parent="." instance=ExtResource("3_1xldv")]
+target_path = NodePath("../TARGET")
+
+[node name="CameraArea" parent="." instance=ExtResource("5_82prq")]
+position = Vector2(336, -120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraArea"]
+shape = SubResource("RectangleShape2D_82prq")
+
+[node name="CameraArea2" parent="." instance=ExtResource("5_82prq")]
+position = Vector2(1328, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraArea2"]
+shape = SubResource("RectangleShape2D_82prq")

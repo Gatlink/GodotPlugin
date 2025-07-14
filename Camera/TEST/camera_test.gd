@@ -4,7 +4,7 @@ extends Node2D
 @onready var camera := $CameraHandler
 @onready var nodes := [
 	$TARGET,
-	$CameraPath,
+#	$CameraPath,
 	$CameraArea
 ]
 
@@ -18,11 +18,11 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	for i in 30:
+	for i in 50:
 		var rect := get_viewport_rect()
 		var pos := Vector2(
-			(randf() * 2 - 1) * rect.size.x * 0.75,
-			(randf() * 2 - 1) * rect.size.y * 0.75
+			(randf() * 2 - 1) * rect.size.x * 1.5,
+			(randf() * 2 - 1) * rect.size.y * 1.5
 		)
 		
 		var color := Color(

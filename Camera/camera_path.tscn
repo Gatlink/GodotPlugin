@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbevniro0py6x"]
+[gd_scene load_steps=4 format=3 uid="uid://bbevniro0py6x"]
+
+[ext_resource type="Script" uid="uid://his0ocllmxhl" path="res://Camera/camera_path.gd" id="1_ohued"]
 
 [sub_resource type="Curve2D" id="1"]
 resource_local_to_scene = true
@@ -7,30 +9,17 @@ _data = {
 }
 point_count = 2
 
-[sub_resource type="Resource" id="Resource_hhod3"]
-metadata/__load_path__ = "res://Camera3D/CameraPath.gd"
-
-[sub_resource type="GDScript" id="2"]
-script/source = "extends PathFollow2D
-
-
-
-"
-
 [sub_resource type="RectangleShape2D" id="3"]
 resource_local_to_scene = true
 size = Vector2(608, 200)
 
 [node name="CameraPath" type="Path2D"]
 curve = SubResource("1")
-script = SubResource("Resource_hhod3")
+script = ExtResource("1_ohued")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
-position = Vector2(2208, 200)
-offset = 1910.59
-rotate = false
+position = Vector2(320, 200)
 loop = false
-script = SubResource("2")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(1152, 200)

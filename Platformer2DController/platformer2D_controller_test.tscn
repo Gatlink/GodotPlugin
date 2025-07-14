@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bepaukshh34ie"]
+[gd_scene load_steps=8 format=3 uid="uid://bepaukshh34ie"]
 
 [ext_resource type="Texture2D" uid="uid://c15xc0y0jqe52" path="res://icon.png" id="1_egq0c"]
 [ext_resource type="PackedScene" uid="uid://0tb8eo1dqu7v" path="res://Platformer2DController/player.tscn" id="1_nqqge"]
+[ext_resource type="PackedScene" uid="uid://bdoa1s1aves38" path="res://Camera/camera_handler.tscn" id="3_rpdsc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_accyj"]
 
@@ -51,3 +52,6 @@ texture = ExtResource("1_egq0c")
 [node name="Player" parent="." instance=ExtResource("1_nqqge")]
 position = Vector2(264, 128)
 debug_draw = true
+
+[node name="CameraHandler" parent="." instance=ExtResource("3_rpdsc")]
+script = null

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdoa1s1aves38"]
+
+[ext_resource type="Script" uid="uid://6qmcbfe3dxi1" path="res://Camera/camera_handler.gd" id="1_mmbpu"]
+
+[node name="CameraHandler" type="Node2D" groups=["CameraHandler"]]
+script = ExtResource("1_mmbpu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
