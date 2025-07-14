@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7c5vpfo7my25"]
 
 [ext_resource type="Theme" uid="uid://dac2l6uvyv1my" path="res://Menu/SubMenuTheme.tres" id="2_sxuaq"]
-[ext_resource type="Script" path="res://Menu/BusSlider.gd" id="4"]
+[ext_resource type="Script" uid="uid://due3gfioqi8pd" path="res://Menu/BusSlider.gd" id="4"]
 
 [node name="BusSlider" type="HBoxContainer"]
 theme_override_constants/separation = 30

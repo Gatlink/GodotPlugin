@@ -1,56 +1,66 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://c11q24aox2fy0"]
 
-[ext_resource path="res://Camera3D/TEST/TARGET.gd" type="Script" id=1]
-[ext_resource path="res://Camera3D/CameraHandler.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Camera3D/TEST/CameraTest.gd" type="Script" id=3]
-[ext_resource path="res://Camera3D/CameraPath.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Camera3D/CameraArea.tscn" type="PackedScene" id=5]
+[sub_resource type="Resource" id="Resource_1rj3h"]
+metadata/__load_path__ = "res://Camera3D/TEST/CameraTest.gd"
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="Resource" id="Resource_m0aet"]
+metadata/__load_path__ = "res://Camera3D/CameraHandler.tscn"
+
+[sub_resource type="Resource" id="Resource_o6idf"]
+metadata/__load_path__ = "res://Camera3D/CameraArea.tscn"
+
+[sub_resource type="RectangleShape2D" id="4"]
 resource_local_to_scene = true
-size = Vector2( 704, 448 )
+size = Vector2(704, 448)
 
-[sub_resource type="Curve2D" id=2]
+[sub_resource type="Resource" id="Resource_8uvbs"]
+metadata/__load_path__ = "res://Camera3D/CameraPath.tscn"
+
+[sub_resource type="Curve2D" id="2"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array( 0, 0, 0, 0, -512, -296, 0, 0, 0, 0, 512, 304 )
+"points": PackedVector2Array(0, 0, 0, 0, -512, -296, 0, 0, 0, 0, 512, 304)
 }
+point_count = 2
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id="3"]
 resource_local_to_scene = true
-size = Vector2( 512, 296 )
+size = Vector2(512, 296)
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="Resource" id="Resource_8iftq"]
+metadata/__load_path__ = "res://Camera3D/TEST/TARGET.gd"
+
+[sub_resource type="CircleShape2D" id="1"]
 radius = 24.0
 
 [node name="CameraTest" type="Node2D"]
-script = ExtResource( 3 )
+script = SubResource("Resource_1rj3h")
 
-[node name="CameraHandler" parent="." instance=ExtResource( 2 )]
+[node name="CameraHandler" parent="."]
 target_path = NodePath("../TARGET")
 
-[node name="CameraArea" parent="." instance=ExtResource( 5 )]
+[node name="CameraArea" parent="."]
 
 [node name="CollisionShape2D" parent="CameraArea" index="0"]
-shape = SubResource( 4 )
+shape = SubResource("4")
 
-[node name="CameraPath" parent="." instance=ExtResource( 4 )]
+[node name="CameraPath" parent="."]
 visible = false
-position = Vector2( 9, 0 )
-curve = SubResource( 2 )
+position = Vector2(9, 0)
+curve = SubResource("2")
 
 [node name="PathFollow2D" parent="CameraPath" index="0"]
-position = Vector2( 512, 304 )
+position = Vector2(512, 304)
 
 [node name="CollisionShape2D" parent="CameraPath/Area2D" index="0"]
-position = Vector2( -1152, -200 )
-shape = SubResource( 3 )
+position = Vector2(-1152, -200)
+shape = SubResource("3")
 
 [node name="TARGET" type="Area2D" parent="."]
-script = ExtResource( 1 )
+script = SubResource("Resource_8iftq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TARGET"]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [editable path="CameraArea"]
 [editable path="CameraPath"]
