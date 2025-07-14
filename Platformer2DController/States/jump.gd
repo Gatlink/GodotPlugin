@@ -27,5 +27,5 @@ func physics_update(delta: float) -> void:
 	timer += delta
 	player.velocity.y = -max_height / max_time
 	
-	if not timer < min_time and (not Input.is_action_pressed("jump") or timer >= max_time):
+	if not timer < min_time and (not PlayerInputs.is_jumping or timer >= max_time):
 		transition_to("Air")

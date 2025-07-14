@@ -17,7 +17,7 @@ var coyotee_timer: float
 
 func enter(params: Dictionary = {}) -> void:
 	super(params)
-	coyotee_timer = coyotee_time
+	coyotee_timer = coyotee_time if params.has("has_coyotee_time") else 0.0
 
 
 func physics_update(delta: float) -> void:
@@ -26,7 +26,7 @@ func physics_update(delta: float) -> void:
 	
 	if coyotee_timer > 0:
 		coyotee_timer -= delta
-		if Input.is_action_just_pressed("jump"):
+		if PlayerInputs.jumped:
 			transition_to("Jump")
 	
 	if player.is_on_floor():
