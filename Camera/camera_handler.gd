@@ -20,9 +20,8 @@ const TRAUMA_POWER = 2
 @onready var noise : FastNoiseLite = FastNoiseLite.new()
 
 
-var previous_node : Node2D
-var current_node : Node2D
 var followed_nodes : Array = []
+var damped_pos : Vector2
 var trauma : Vector2
 var noise_y : int = 0
 
@@ -42,16 +41,20 @@ func _ready() -> void:
 
 
 func _process(delta : float) -> void:
-	global_position = get_next_position(current_node)
+	var next_pos := target.global_position
+	if followed_nodes.size() > 0:
+		var followed_node: Node2D = followed_nodes.back()
+		if followed_node.has_method("get_next_position"):
+			next_pos = followed_node.get_next_position(target)
+		else:
+			next_pos = followed_node.global_position
 	
-	if previous_node != null:
+	if damping_timer > 0:
 		var t = 1 - damping_timer / damp_time
-		var previous_position = get_next_position(previous_node)
-		global_position = lerp(previous_position, global_position, t)
-		
+		next_pos = lerp(damped_pos, next_pos, t)
 		damping_timer -= delta
-		if damping_timer <= 0:
-			previous_node = null
+	
+	global_position = next_pos
 	
 	if trauma.x > 0 or trauma.y > 0:
 		trauma.x = max(trauma.x - decay * delta, 0)
@@ -70,19 +73,22 @@ func get_next_position(node : Node2D) -> Vector2:
 
 
 func start_following_node(node : Node2D) -> void:
-	previous_node = current_node
-	current_node = node
-	damping_timer = damp_time
+	start_damping()
 	
 	if node != null:
 		followed_nodes.append(node)
 
 
 func stop_following_node(node : Node2D) -> void:
-	followed_nodes.erase(node)
+	if followed_nodes.back() == node:
+		start_damping()
 	
-	if current_node == node:
-		start_following_node(followed_nodes.back() if followed_nodes.size() > 0 else null)
+	followed_nodes.erase(node)
+
+
+func start_damping() -> void:
+	damping_timer = damp_time
+	damped_pos = global_position
 
 
 func add_trauma(x : float, y : float) -> void:
