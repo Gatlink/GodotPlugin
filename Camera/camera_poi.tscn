@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddwgysgack8yg"]
+
+[ext_resource type="Script" uid="uid://s87govou1v5" path="res://Camera/camera_poi.gd" id="1_v0n0j"]
+
+[node name="CameraPoi" type="Area2D"]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_v0n0j")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

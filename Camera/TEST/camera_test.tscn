@@ -1,15 +1,32 @@
-[gd_scene load_steps=7 format=3 uid="uid://c11q24aox2fy0"]
+[gd_scene load_steps=13 format=3 uid="uid://c11q24aox2fy0"]
 
 [ext_resource type="Script" uid="uid://dumg6ck8rnoxv" path="res://Camera/TEST/camera_test.gd" id="1_4tosv"]
 [ext_resource type="Script" uid="uid://bfy5ig8dte0wr" path="res://Camera/TEST/TARGET.gd" id="2_1xldv"]
 [ext_resource type="PackedScene" uid="uid://bdoa1s1aves38" path="res://Camera/camera_handler.tscn" id="3_1xldv"]
 [ext_resource type="PackedScene" uid="uid://dk06wmmd3pmd" path="res://Camera/camera_area.tscn" id="5_82prq"]
+[ext_resource type="PackedScene" uid="uid://bbevniro0py6x" path="res://Camera/camera_path.tscn" id="5_agxxt"]
+[ext_resource type="PackedScene" uid="uid://ddwgysgack8yg" path="res://Camera/camera_poi.tscn" id="6_agxxt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mfx4t"]
 radius = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82prq"]
 size = Vector2(2000, 1000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agxxt"]
+size = Vector2(2000, 1000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrabe"]
+size = Vector2(1000, 1072)
+
+[sub_resource type="Curve2D" id="Curve2D_163le"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 936, -248, 0, 0, 0, 0, 488, 136, 0, 0, 0, 0, -128, 152, 0, 0, 0, 0, -648, -88, 0, 0, 0, 0, -648, -992, 0, 0, 0, 0, 16, -1144)
+}
+point_count = 6
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mrabe"]
+radius = 384.0
 
 [node name="CameraTest" type="Node2D"]
 script = ExtResource("1_4tosv")
@@ -35,3 +52,22 @@ position = Vector2(1328, 320)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraArea2"]
 shape = SubResource("RectangleShape2D_82prq")
+
+[node name="CameraPath" parent="." instance=ExtResource("5_agxxt")]
+position = Vector2(-552, 760)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraPath"]
+shape = SubResource("RectangleShape2D_agxxt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CameraPath"]
+position = Vector2(-504, -848)
+shape = SubResource("RectangleShape2D_mrabe")
+
+[node name="Path2D" type="Path2D" parent="CameraPath"]
+curve = SubResource("Curve2D_163le")
+
+[node name="CameraPoi" parent="." instance=ExtResource("6_agxxt")]
+position = Vector2(1792, 384)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraPoi"]
+shape = SubResource("CircleShape2D_mrabe")
