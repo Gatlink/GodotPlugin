@@ -1,20 +1,8 @@
 extends Node2D
 
 
-@onready var camera := $CameraHandler
-@onready var nodes := [
-	$TARGET,
-#	$CameraPath,
-	$CameraArea
-]
-
-
-var current_node := 0
-
-
 func _ready() -> void:
 	randomize()
-	camera.start_following_node(nodes[0])
 
 
 func _draw() -> void:
@@ -32,9 +20,3 @@ func _draw() -> void:
 		)
 		
 		draw_circle(pos, 50 + randf() * 50, color)
-
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		current_node = (current_node + 1) % nodes.size()
-		camera.start_following_node(nodes[current_node])

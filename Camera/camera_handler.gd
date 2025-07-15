@@ -31,25 +31,23 @@ func _ready() -> void:
 	randomize()
 	noise.seed = randi()
 	noise.fractal_octaves = 2
-	camera.make_current()
 	
 	if target == null:
 		printerr("CameraHandler: no target found")
 		set_process(false)
 	else:
 		global_position = target.global_position
+	
+	camera.make_current()
 
 
 func _process(delta : float) -> void:
-	if current_node == null:
-		return
-	elif previous_node == null:
-		position = get_next_position(current_node)
-	else:
+	global_position = get_next_position(current_node)
+	
+	if previous_node != null:
 		var t = 1 - damping_timer / damp_time
 		var previous_position = get_next_position(previous_node)
-		var current_position = get_next_position(current_node)
-		global_position = lerp(previous_position, current_position, t)
+		global_position = lerp(previous_position, global_position, t)
 		
 		damping_timer -= delta
 		if damping_timer <= 0:
@@ -61,42 +59,30 @@ func _process(delta : float) -> void:
 		shake()
 
 
-func get_next_position(node : Node) -> Vector2:
-	var path := node as CameraPath
-	if path != null:
-		return path.get_next_position(target)
-	
-	var area := node as CameraArea
-	if area != null:
-		var limits := area.limits
-		var pos := target.global_position
-		var size := get_viewport_rect().size * 0.5
-		var left_top_offset := limits.position - (pos - size)
-		var right_bottom_offset := limits.end - (pos + size)
+func get_next_position(node : Node2D) -> Vector2:
+	if node == null:
+		return target.global_position
 		
-		left_top_offset.x = max(0, left_top_offset.x)
-		left_top_offset.y = max(0, left_top_offset.y)
-		right_bottom_offset.x = min(0, right_bottom_offset.x)
-		right_bottom_offset.y = min(0, right_bottom_offset.y)
-		
-		return pos + left_top_offset + right_bottom_offset
+	if node.has_method("get_next_position"):
+		return node.get_next_position(target)
 	
-	if current_node != null:
-		return current_node.global_position
-	
-	return target.global_position
+	return node.global_position
 
 
 func start_following_node(node : Node2D) -> void:
 	previous_node = current_node
 	current_node = node
-	followed_nodes.push_front(node)
 	damping_timer = damp_time
+	
+	if node != null:
+		followed_nodes.append(node)
 
 
 func stop_following_node(node : Node2D) -> void:
 	followed_nodes.erase(node)
-	start_following_node(followed_nodes[0] if followed_nodes.size() > 0 else null)
+	
+	if current_node == node:
+		start_following_node(followed_nodes.back() if followed_nodes.size() > 0 else null)
 
 
 func add_trauma(x : float, y : float) -> void:
