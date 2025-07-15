@@ -7,8 +7,8 @@ extends Area2D
 @onready var path: Path2D
 
 
-func get_next_position(target : Node2D) -> Vector2:
-	return to_global(path.curve.get_closest_point(to_local(target.global_position)))
+func get_next_position(target_pos: Vector2) -> Vector2:
+	return to_global(path.curve.get_closest_point(to_local(target_pos)))
 
 
 func _get_configuration_warnings() -> PackedStringArray:

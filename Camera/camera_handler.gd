@@ -45,7 +45,7 @@ func _process(delta : float) -> void:
 	if followed_nodes.size() > 0:
 		var followed_node: Node2D = followed_nodes.back()
 		if followed_node.has_method("get_next_position"):
-			next_pos = followed_node.get_next_position(target)
+			next_pos = followed_node.get_next_position(target.global_position)
 		else:
 			next_pos = followed_node.global_position
 	
@@ -60,16 +60,6 @@ func _process(delta : float) -> void:
 		trauma.x = max(trauma.x - decay * delta, 0)
 		trauma.y = max(trauma.y - decay * delta, 0)
 		shake()
-
-
-func get_next_position(node : Node2D) -> Vector2:
-	if node == null:
-		return target.global_position
-		
-	if node.has_method("get_next_position"):
-		return node.get_next_position(target)
-	
-	return node.global_position
 
 
 func start_following_node(node : Node2D) -> void:

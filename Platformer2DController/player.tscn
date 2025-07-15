@@ -7,10 +7,11 @@
 [ext_resource type="Script" uid="uid://d0x2mo0kw7hhh" path="res://Platformer2DController/States/air.gd" id="4_560se"]
 [ext_resource type="Script" uid="uid://clijydx75l82s" path="res://Platformer2DController/States/jump.gd" id="5_078gm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_htq4p"]
-size = Vector2(64, 64)
+[sub_resource type="CircleShape2D" id="CircleShape2D_078gm"]
+radius = 32.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_mask = 2
 script = ExtResource("1_jaiqg")
 
 [node name="StateMachine" type="Node" parent="."]
@@ -29,6 +30,7 @@ acceleration = 0.5
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("5_078gm")
+max_height = 160.0
 max_time = 0.4
 acceleration = 0.5
 metadata/_custom_type_script = "uid://clijydx75l82s"
@@ -46,4 +48,4 @@ texture = ExtResource("2_kumej")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -32)
-shape = SubResource("RectangleShape2D_htq4p")
+shape = SubResource("CircleShape2D_078gm")

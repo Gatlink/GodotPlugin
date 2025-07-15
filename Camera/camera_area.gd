@@ -8,18 +8,17 @@ extends Area2D
 var limits : Rect2
 
 
-func get_next_position(target: Node2D) -> Vector2:
-	var pos := target.global_position
+func get_next_position(target_pos: Vector2) -> Vector2:
 	var size := get_viewport_rect().size * 0.5
-	var left_top_offset := limits.position - (pos - size)
-	var right_bottom_offset := limits.end - (pos + size)
+	var left_top_offset := limits.position - (target_pos - size)
+	var right_bottom_offset := limits.end - (target_pos + size)
 	
 	left_top_offset.x = max(0, left_top_offset.x)
 	left_top_offset.y = max(0, left_top_offset.y)
 	right_bottom_offset.x = min(0, right_bottom_offset.x)
 	right_bottom_offset.y = min(0, right_bottom_offset.y)
 	
-	return pos + left_top_offset + right_bottom_offset
+	return target_pos + left_top_offset + right_bottom_offset
 
 
 func _ready() -> void:

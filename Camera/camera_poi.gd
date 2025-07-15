@@ -8,8 +8,8 @@ extends Area2D
 @onready var handler: CameraHandler = get_tree().get_first_node_in_group("CameraHandler")
 
 
-func get_next_position(target : Node2D) -> Vector2:
-	return lerp(target.global_position, global_position, weight)
+func get_next_position(target_pos: Vector2) -> Vector2:
+	return lerp(target_pos, global_position, weight)
 
 
 func _process(_delta: float) -> void:

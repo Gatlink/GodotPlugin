@@ -33,6 +33,7 @@ folder_colors={
 [global_group]
 
 CameraHandler="Used to quickly find the Camera Handler"
+Player="This group should only contain the player character"
 
 [gui]
 
