@@ -24,6 +24,7 @@ var followed_nodes : Array = []
 var damped_pos : Vector2
 var trauma : Vector2
 var noise_y : int = 0
+var is_first_damp: bool = true
 
 
 func _ready() -> void:
@@ -77,6 +78,10 @@ func stop_following_node(node : Node2D) -> void:
 
 
 func start_damping() -> void:
+	if is_first_damp:
+		is_first_damp = false
+		return
+	
 	damping_timer = damp_time
 	damped_pos = global_position
 
