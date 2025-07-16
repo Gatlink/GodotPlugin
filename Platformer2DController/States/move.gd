@@ -7,10 +7,10 @@ extends PlayerState
 @export var max_speed: float = 256
 
 ## Time to max speed, in seconds
-@export var acceleration: float = 1.0
+@export var time_to_full_speed: float = 1.0
 
 ## Time to 0 speed, in seconds
-@export var deceleration: float = 1.0
+@export var time_to_stop: float = 1.0
 
 ## Factor applied to acceleration when changing direction
 @export var turn_factor: float = 1.0
@@ -19,26 +19,39 @@ extends PlayerState
 @export var instant_turn: bool
 
 
+@onready var acceleration: float = max_speed / time_to_full_speed if time_to_full_speed > 0 else INF
+@onready var deceleration: float = max_speed / time_to_stop if time_to_stop > 0 else INF
+
+
 func physics_update(delta: float) -> void:
 	var h_dir := PlayerInputs.dir.x
+	var acc: float = deceleration
+	var target_speed: float = 0.0
 	
-	# ACCELERATION
 	if h_dir != 0:
-		var is_turning: bool = player.velocity.x != 0 and sign(player.velocity.x) != h_dir
-		if instant_turn and is_turning:
-			player.velocity.x *= -1
-		else:
-			player.velocity.x += h_dir * max_speed / acceleration * delta * (turn_factor if is_turning else 1.0)
-		
-		# player.velocity.x = clamp(player.velocity.x, -max_speed, max_speed)
-		if abs(player.velocity.x) > max_speed:
-			player.velocity.x += -sign(player.velocity.x) * max_speed / deceleration * delta
-		
 		player.dir = h_dir
-	# DECELERATION
-	elif player.velocity.x != 0:
-		var h_vel_sign: int = sign(player.velocity.x)
-		player.velocity.x = player.velocity.x - h_vel_sign * max_speed / deceleration * delta
-		
-		if sign(player.velocity.x) != h_vel_sign:
-			player.velocity.x = 0
+		target_speed = h_dir * max_speed
+		var is_turning: bool = player.velocity.x != 0 and sign(player.velocity.x) != h_dir
+		if is_turning:
+			acc = acceleration * turn_factor if not instant_turn else INF
+		else:
+			acc = acceleration
+	
+	player.velocity.x = get_new_velocity_x(target_speed, acc, delta)
+
+
+func get_new_velocity_x(target_speed: float, acc: float, delta: float) -> float:
+	var diff: float = target_speed - player.velocity.x
+	var dir: float = sign(diff)
+	
+	# Speed is already at target speed
+	if dir == 0:
+		return player.velocity.x
+	
+	var speed_delta: float = dir * acc * delta
+	
+	# prevent overshooting
+	if abs(speed_delta) > abs(diff):
+		speed_delta = diff
+	
+	return player.velocity.x + speed_delta

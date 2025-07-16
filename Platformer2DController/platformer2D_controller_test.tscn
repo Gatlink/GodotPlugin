@@ -35,7 +35,7 @@ position = Vector2(184, -64)
 script = ExtResource("3_snc4m")
 
 [node name="CameraHandler" parent="." instance=ExtResource("3_rpdsc")]
-position = Vector2(576, 0)
+position = Vector2(448, -16)
 target_path = NodePath("../Player/CameraTarget")
 
 [node name="CameraArea" parent="." instance=ExtResource("4_ty8il")]

@@ -30,7 +30,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	queue_redraw()
+	if debug_draw:
+		queue_redraw()
 
 
 func _physics_process(_delta: float) -> void:

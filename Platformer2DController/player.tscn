@@ -19,20 +19,18 @@ script = ExtResource("2_7cm2g")
 
 [node name="Stand" type="Node" parent="StateMachine"]
 script = ExtResource("3_o8j5j")
-acceleration = 0.5
-deceleration = 0.2
+time_to_full_speed = 0.5
+time_to_stop = 0.2
+turn_factor = 2.0
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("4_560se")
 gravity = 0.5
 max_speed = 64.0
-acceleration = 0.5
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("5_078gm")
 max_height = 160.0
-max_time = 0.4
-acceleration = 0.5
 metadata/_custom_type_script = "uid://clijydx75l82s"
 
 [node name="Graph" type="Node2D" parent="."]
