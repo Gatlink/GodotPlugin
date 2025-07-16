@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://0tb8eo1dqu7v"]
+[gd_scene load_steps=7 format=3 uid="uid://0tb8eo1dqu7v"]
 
 [ext_resource type="Script" uid="uid://bhm7iy1p507pi" path="res://Platformer2DController/player.gd" id="1_jaiqg"]
 [ext_resource type="Script" uid="uid://bu0v0ptvj3yyk" path="res://StateMachine/StateMachine.gd" id="2_7cm2g"]
 [ext_resource type="Texture2D" uid="uid://c15xc0y0jqe52" path="res://icon.png" id="2_kumej"]
 [ext_resource type="Script" uid="uid://ul7lrvar6rn0" path="res://Platformer2DController/States/stand.gd" id="3_o8j5j"]
 [ext_resource type="Script" uid="uid://d0x2mo0kw7hhh" path="res://Platformer2DController/States/air.gd" id="4_560se"]
-[ext_resource type="Script" uid="uid://clijydx75l82s" path="res://Platformer2DController/States/jump.gd" id="5_078gm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_078gm"]
 radius = 32.0
@@ -25,13 +24,6 @@ turn_factor = 2.0
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("4_560se")
-gravity = 0.5
-max_speed = 64.0
-
-[node name="Jump" type="Node" parent="StateMachine"]
-script = ExtResource("5_078gm")
-max_height = 160.0
-metadata/_custom_type_script = "uid://clijydx75l82s"
 
 [node name="Graph" type="Node2D" parent="."]
 position = Vector2(0, -32)

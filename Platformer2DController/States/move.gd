@@ -19,8 +19,8 @@ extends PlayerState
 @export var instant_turn: bool
 
 
-@onready var acceleration: float = max_speed / time_to_full_speed if time_to_full_speed > 0 else INF
-@onready var deceleration: float = max_speed / time_to_stop if time_to_stop > 0 else INF
+@onready var acceleration: float = max_speed / time_to_full_speed
+@onready var deceleration: float = max_speed / time_to_stop
 
 
 func physics_update(delta: float) -> void:
