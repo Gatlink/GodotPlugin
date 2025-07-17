@@ -40,6 +40,8 @@ func enter(params: Dictionary = {}) -> void:
 		init_jump()
 	else:
 		coyotee_timer = coyotee_time
+	
+	player.play_animation("jump")
 
 
 func physics_update(delta: float) -> void:

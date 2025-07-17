@@ -1,10 +1,44 @@
-[gd_scene load_steps=7 format=3 uid="uid://0tb8eo1dqu7v"]
+[gd_scene load_steps=12 format=3 uid="uid://0tb8eo1dqu7v"]
 
 [ext_resource type="Script" uid="uid://bhm7iy1p507pi" path="res://Platformer2DController/player.gd" id="1_jaiqg"]
 [ext_resource type="Script" uid="uid://bu0v0ptvj3yyk" path="res://StateMachine/StateMachine.gd" id="2_7cm2g"]
 [ext_resource type="Texture2D" uid="uid://c15xc0y0jqe52" path="res://icon.png" id="2_kumej"]
 [ext_resource type="Script" uid="uid://ul7lrvar6rn0" path="res://Platformer2DController/States/stand.gd" id="3_o8j5j"]
 [ext_resource type="Script" uid="uid://d0x2mo0kw7hhh" path="res://Platformer2DController/States/air.gd" id="4_560se"]
+[ext_resource type="Texture2D" uid="uid://b44k1lxp4ah4g" path="res://Platformer2DController/Sprites/alienPink_stand.png" id="5_078gm"]
+[ext_resource type="Texture2D" uid="uid://eelq1v2mq8a6" path="res://Platformer2DController/Sprites/alienPink_jump.png" id="6_magla"]
+[ext_resource type="Texture2D" uid="uid://cjsl4vpqlhou" path="res://Platformer2DController/Sprites/alienPink_walk1.png" id="7_06hv8"]
+[ext_resource type="Texture2D" uid="uid://5odh7on86kso" path="res://Platformer2DController/Sprites/alienPink_walk2.png" id="8_rbs4w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tv3pv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_078gm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_magla")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_06hv8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rbs4w")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_078gm"]
 radius = 32.0
@@ -25,13 +59,18 @@ turn_factor = 2.0
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("4_560se")
 
-[node name="Graph" type="Node2D" parent="."]
-position = Vector2(0, -32)
+[node name="Graph" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -64)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_tv3pv")
+animation = &"jump"
 
 [node name="Sprite" type="Sprite2D" parent="Graph"]
+visible = false
 texture = ExtResource("2_kumej")
 
 [node name="Head" type="Sprite2D" parent="Graph"]
+visible = false
 position = Vector2(32, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_kumej")

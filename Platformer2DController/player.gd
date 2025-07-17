@@ -8,7 +8,7 @@ const POSITION_BUFFER_COUNT: int = 1024
 @export var debug_draw: bool
 
 
-@onready var graph: Node2D = $Graph
+@onready var graph: AnimatedSprite2D = $Graph
 
 
 var position_buffer: Array[Vector2] = []
@@ -20,9 +20,7 @@ var dir: float:
 			return
 		
 		dir = value
-		graph.scale.x = value
-	get:
-		return graph.scale.x
+		graph.flip_h = value < 0
 
 
 func _ready() -> void:
@@ -46,3 +44,7 @@ func _physics_process(_delta: float) -> void:
 func _draw() -> void:
 	for i in range(0, position_buffer.size() - 2):
 		draw_line(position_buffer[i] - global_position, position_buffer[i + 1] - global_position, Color.FIREBRICK)
+
+
+func play_animation(anim_name: String) -> void:
+	graph.play(anim_name)
