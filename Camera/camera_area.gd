@@ -31,20 +31,20 @@ func _ready() -> void:
 		printerr("CameraPath could not find a CameraHandler")
 
 
-func _process(_delta: float) -> void:
-	queue_redraw()
-
-
-func _draw() -> void:
-	var top_left := limits.position - global_position
-	var top_right := Vector2(limits.end.x, limits.position.y) - global_position
-	var bottom_left := Vector2(limits.position.x, limits.end.y) - global_position
-	var bottom_right := limits.end - global_position
-	
-	draw_line(top_left, top_right, Color.RED)
-	draw_line(top_right, bottom_right, Color.RED)
-	draw_line(bottom_right, bottom_left, Color.RED)
-	draw_line(bottom_left, top_left, Color.RED)
+#func _process(_delta: float) -> void:
+	#queue_redraw()
+#
+#
+#func _draw() -> void:
+	#var top_left := limits.position - global_position
+	#var top_right := Vector2(limits.end.x, limits.position.y) - global_position
+	#var bottom_left := Vector2(limits.position.x, limits.end.y) - global_position
+	#var bottom_right := limits.end - global_position
+	#
+	#draw_line(top_left, top_right, Color.RED)
+	#draw_line(top_right, bottom_right, Color.RED)
+	#draw_line(bottom_right, bottom_left, Color.RED)
+	#draw_line(bottom_left, top_left, Color.RED)
 
 
 func _on_CameraArea_body_entered(_body: Node2D) -> void:

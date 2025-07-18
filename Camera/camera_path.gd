@@ -1,4 +1,3 @@
-@tool
 class_name CameraPath
 extends Area2D
 
@@ -34,20 +33,20 @@ func _ready() -> void:
 		printerr("CameraPath requires a Path2D to function properly.")
 
 
-func _process(_delta: float) -> void:
-	queue_redraw()
-
-
-func _draw() -> void:
-	if path == null or Engine.is_editor_hint():
-		return
-	
-	for i in path.curve.point_count - 1:
-		draw_line(
-			path.curve.get_point_position(i),
-			path.curve.get_point_position(i + 1),
-			Color.RED
-		)
+#func _process(_delta: float) -> void:
+	#queue_redraw()
+#
+#
+#func _draw() -> void:
+	#if path == null or Engine.is_editor_hint():
+		#return
+	#
+	#for i in path.curve.point_count - 1:
+		#draw_line(
+			#path.curve.get_point_position(i),
+			#path.curve.get_point_position(i + 1),
+			#Color.RED
+		#)
 
 
 func _on_Area2D_body_entered(_body: Node2D) -> void:

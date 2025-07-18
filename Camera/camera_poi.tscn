@@ -4,6 +4,7 @@
 
 [node name="CameraPoi" type="Area2D"]
 collision_layer = 0
+input_pickable = false
 monitorable = false
 script = ExtResource("1_v0n0j")
 

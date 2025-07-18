@@ -12,12 +12,12 @@ func get_next_position(target_pos: Vector2) -> Vector2:
 	return lerp(target_pos, global_position, weight)
 
 
-func _process(_delta: float) -> void:
-	queue_redraw()
-
-
-func _draw() -> void:
-	draw_circle(Vector2.ZERO, 16, Color.RED)
+#func _process(_delta: float) -> void:
+	#queue_redraw()
+#
+#
+#func _draw() -> void:
+	#draw_circle(Vector2.ZERO, 16, Color.RED)
 
 
 func _on_body_entered(_body: Node2D) -> void:

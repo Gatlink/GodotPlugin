@@ -4,6 +4,8 @@
 
 [node name="CameraArea" type="Area2D"]
 collision_layer = 0
+input_pickable = false
+monitorable = false
 script = ExtResource("1_bj1e0")
 
 [connection signal="body_entered" from="." to="." method="_on_CameraArea_body_entered"]
