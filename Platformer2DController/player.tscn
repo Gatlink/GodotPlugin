@@ -1,14 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://0tb8eo1dqu7v"]
+[gd_scene load_steps=14 format=3 uid="uid://0tb8eo1dqu7v"]
 
 [ext_resource type="Script" uid="uid://bhm7iy1p507pi" path="res://Platformer2DController/player.gd" id="1_jaiqg"]
 [ext_resource type="Script" uid="uid://bu0v0ptvj3yyk" path="res://StateMachine/StateMachine.gd" id="2_7cm2g"]
 [ext_resource type="Texture2D" uid="uid://c15xc0y0jqe52" path="res://icon.png" id="2_kumej"]
 [ext_resource type="Script" uid="uid://ul7lrvar6rn0" path="res://Platformer2DController/States/stand.gd" id="3_o8j5j"]
 [ext_resource type="Script" uid="uid://d0x2mo0kw7hhh" path="res://Platformer2DController/States/air.gd" id="4_560se"]
+[ext_resource type="Script" uid="uid://ul5hw4d2jv8q" path="res://Platformer2DController/jump_data.gd" id="5_06hv8"]
 [ext_resource type="Texture2D" uid="uid://b44k1lxp4ah4g" path="res://Platformer2DController/Sprites/alienPink_stand.png" id="5_078gm"]
 [ext_resource type="Texture2D" uid="uid://eelq1v2mq8a6" path="res://Platformer2DController/Sprites/alienPink_jump.png" id="6_magla"]
 [ext_resource type="Texture2D" uid="uid://cjsl4vpqlhou" path="res://Platformer2DController/Sprites/alienPink_walk1.png" id="7_06hv8"]
 [ext_resource type="Texture2D" uid="uid://5odh7on86kso" path="res://Platformer2DController/Sprites/alienPink_walk2.png" id="8_rbs4w"]
+
+[sub_resource type="Resource" id="Resource_rbs4w"]
+script = ExtResource("5_06hv8")
+id = "base"
+metadata/_custom_type_script = "uid://ul5hw4d2jv8q"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tv3pv"]
 animations = [{
@@ -58,6 +64,7 @@ turn_factor = 2.0
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("4_560se")
+jumps = Array[ExtResource("5_06hv8")]([SubResource("Resource_rbs4w")])
 
 [node name="Graph" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -64)

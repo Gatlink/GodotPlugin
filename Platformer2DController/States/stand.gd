@@ -9,5 +9,5 @@ func physics_update(delta: float) -> void:
 	
 	if not player.is_on_floor():
 		transition_to("Air")
-	elif PlayerInputs.jumped:
-		transition_to("Air", { "jump": true })
+	elif PlayerInputs.is_just_pressed("jump"):
+		transition_to("Air", { "jump": "base" })
